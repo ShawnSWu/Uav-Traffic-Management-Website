@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trajectory Visual</title>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css" type="text/css"/>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <link rel="stylesheet"  href="/Uav-Traffic-Management-Website/realtime_map/css/header-side-bar.css">
+    <script src='/Uav-Traffic-Management-Website/modules/cookie-manager.js'></script>
+    <script src='/Uav-Traffic-Management-Website/modules/serverParam.js'></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/Uav-Traffic-Management-Website/trajectory_analysis/css/trajectory_analysis.css"/>
+
+</head>
+<body>
+
+<div id="container">
+    <script src="/Uav-Traffic-Management-Website/realtime_map/js/header-side-bar.js"></script>
+    <div id="header-bar" >
+        <div id="burger" class="burger" onclick="openNav()">
+            <div id="line1" class="line1"></div>
+            <div id="line2" class="line2"></div>
+            <div id="line3" class="line3"></div>
+        </div>
+        <div id="side-bar" class="sidenav">
+            <div id="photo-part">
+                <img id="pilot-photo" src="/Uav-Traffic-Management-Website/modules/pilot.png">
+                <p id="pilot-name">USERNAME</p>
+            </div>
+            <div class="divider-line"></div>
+            <a onclick="goRealTimeMap()"><i class="fas fa-map-marked"></i>MAP</a>
+            <a onclick="goFlightPlanManage()"> <i class="fas fa-file-contract"></i>FLIGHT PLAN</a>
+            <a onclick=""><i class="fas fa-bell"></i>Notification</a>
+        </div>
+    </div>
+
+    <div id="wrapper">
+    <div id="upload_file_container">
+
+        <div id="information_column">
+            <label id="stability_title">FlightPlan Stability</label>
+            <label id="stability_value">0.0</label>
+
+        </div>
+
+        <div id="csv_upload_container" class="upload_container" onclick="selectTrajectoryFile();">
+
+            <form id="upload_csv" enctype="multipart/form-data" class="upload_form" method="post">
+                <i class="fas fa-file-csv fa-3x"></i>
+                <input type="file" id="trajectory_file" name="trajectory_file" class="upload_button" onchange="uploadTrajectoryFile();">
+                <label id="trajectory_file_name" class="file_name">Trajectory File</label>
+            </form>
+
+        </div>
+
+        <div id="waypoints_upload_container" class="upload_container" onclick="selectWayPointsFile();">
+            <form id="upload_waypoints_file" class="upload_form" enctype="multipart/form-data" method="post">
+                <i class="fas fa-file-upload fa-3x"></i>
+                <input type="file" id="wayPointFile" name="wayPointFile" class="upload_button" onchange="uploadWayPointsFile();">
+                <label id="waypoints_file_name" class="file_name">FlightPlan File</label>
+            </form>
+        </div>
+
+        <div id="analysis_stability_button" onclick="submit_analysis();">
+            <label>Stability analysis</label>
+        </div>
+
+        <div>
+
+        </div>
+
+    </div>
+    <div id='map'>
+
+    </div>
+</div>
+
+</div>
+
+</body>
+
+<script>
+
+    function goRealTimeMap() {
+        window.location.replace("/Uav-Traffic-Management-Website/realtime_map/html/drone-map.html");
+    }
+
+
+    function goFlightPlanManage() {
+        window.location.replace("/Uav-Traffic-Management-Website/flightplan_manage/html/flight-plan-manage.html");
+    }
+
+</script>
+
+<script src="/Uav-Traffic-Management-Website/trajectory_analysis/js/trajectory_analysis.js"></script>
+
+</html>

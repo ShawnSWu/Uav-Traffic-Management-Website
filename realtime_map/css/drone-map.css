@@ -1,0 +1,56 @@
+.mapboxgl-popup-content h4 {
+    background-color:#7971ea;
+    color: white;
+    margin:0;
+    padding:10px;
+    border-radius:3px 3px 0 0;
+    font-weight:700;
+    margin-top:-15px;
+    text-align:center;
+
+  }
+
+  .mapboxgl-popup-content{
+    width:100%;
+    background-color: white;
+  }
+
+
+  .mapboxgl-popup-content table, th, td {
+    color: #444a59;
+    font-size: 13px;
+    text-align:center;
+    border:3px;
+    font-weight: bolder ;
+    border: 1px solid black;
+  border-collapse: collapse;
+  }
+
+  #plan-stability-panel{
+      position: relative;
+      top: 60px;
+      left: 0;
+      background-color: #444a59;
+      width: 300px;
+      height: 330px;
+      z-index:99;
+      border-top:4px #7971ea solid;
+      padding: 5px;
+  }
+
+  #plan-stability-list{
+      list-style-type:none;
+      height: 300px;
+      overflow-y: scroll;
+      color: #FFFFFF;
+      padding: 20px;
+      font-size: 14px;
+      display:none;
+  }
+
+  #no-plan-message{
+      text-align:center;
+      line-height:300px;
+      color: #FFFFFF;
+
+  }

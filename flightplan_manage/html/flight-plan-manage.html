@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="/">
+
+    <meta charset="utf-8" http-equiv="Content-Security-Policy">
+    <title>FlightPlan Manage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/Uav-Traffic-Management-Website/flightplan_manage/css/flight-plan-manage.css"/>
+    <link rel="stylesheet"  href="/Uav-Traffic-Management-Website/modules/header-side-bar.css">
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='//d3js.org/d3.v3.min.js' charset='utf-8'></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css" type="text/css"/>
+
+
+    <script src='//d3js.org/d3.v3.min.js' charset='utf-8'></script>
+
+    <script src='/Uav-Traffic-Management-Website/modules/cookie-manager.js'></script>
+    <script src='/Uav-Traffic-Management-Website/modules/serverParam.js'></script>
+
+    <script src='/Uav-Traffic-Management-Website/realtime_map/js/drone-map.js'></script>
+
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.18.1/moment-with-locales.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+    <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+</head>
+
+<body id="body">
+
+<div id='wrapper'>
+    <script src="/Uav-Traffic-Management-Website/modules/header-side-bar.js"></script>
+    <div id="header-bar" >
+        <div id="burger" class="burger" onclick="openNav()">
+            <div id="line1" class="line1"></div>
+            <div id="line2" class="line2"></div>
+            <div id="line3" class="line3"></div>
+        </div>
+        <div id="side-bar" class="sidenav">
+            <div id="photo-part">
+                <img id="pilot-photo" src="/Uav-Traffic-Management-Website/modules/pilot.png">
+                <p id="pilot-name">SHAWN WU</p>
+            </div>
+            <div class="divider-line"></div>
+            <a onclick="goMapPage()"><i class="fas fa-map-marked"></i>MAP</a>
+            <a> <i class="fas fa-file-contract"></i>FLIGHT PLAN</a>
+            <a onclick="goTrajectoryAnalysis()"><i class="fas fa-bell"></i>ANALYSIS</a>
+        </div>
+
+    </div>
+
+
+
+    <div class="form-v10">
+        <div class="page-content">
+            <div class="form-v10-content">
+                <form class="form-detail" action="#" method="post" id="apply-plan-form">
+                    <div class="form-left">
+                        <h2>New Flight Plan</h2>
+                        <div class="form-row form-row-1 check-item">
+                            <input type="text" name="apply-pilot-account" id="apply-pilot-account" class="input-text" disabled placeholder="Pilot ID" required>
+                            <label>
+                                <i class="fas fa-check-square"></i>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <select id="uav-list" name="uav-macAddress">
+                                <option>uav001</option>
+                            </select>
+                            <span class="select-btn">
+                                    <i class="zmdi zmdi-chevron-down"></i>
+                                </span>
+                        </div>
+
+                        <div class="form-row">
+                            <input type="text" name="expected-date" class="company date-input" id="expected-date" placeholder="Expected date" required/>
+                        </div>
+
+                        <div class="form-row">
+                            <input type="text" name="expected-start-time" class="company time-input" id="expected-start-time" placeholder="Expected Takeoff Time" required/>
+                        </div>
+
+                        <div class="form-row">
+                            <input type="text" name="expected-end-time" class="company time-input" id="expected-end-time" placeholder="Expected Arrivals Time" required/>
+                        </div>
+
+
+                        <div class="form-row">
+                            <input type="text" name="expected-flying-height" class="company" id="expected-flying-height" placeholder="Expected Flying Height" required>
+                        </div>
+
+                        <div class="form-row arrow-item">
+                            <input type="text" name="flight-plan-path" class="company lock-input" id="flight-plan-path" placeholder="Flight Plan Path" required disabled>
+                            <label>
+                                <i class="fas fa-long-arrow-alt-right"></i>
+                            </label>
+                        </div>
+
+                        <div class="form-row">
+                            <input type="text" name="flight-description" class="company" id="flight-description" placeholder="Plan Description" required>
+                        </div>
+                        <div class="form-group"></div>
+                        <div class="form-row-last">
+                            <input id="submit-plan" type="submit" name="register" data-toggle="modal" class="register" value="Submit Plan">
+                        </div>
+                    </div>
+
+                    <div id='select-flight-path-map'>
+                        <!-- realtime_map -->
+                    </div>
+
+                    <script src="/Uav-Traffic-Management-Website/flightplan_manage/js/flight-plan-manage.js"></script>
+
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- The Modal -->
+    <div class="modal" id="Signup-Plan-Status-Modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 id="register-status" class="modal-title">Status</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div id="register-message" class="modal-body">
+                    Modal body..
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button onclick="done()" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $('.date-input').datetimepicker({
+            format: 'YYYY-MM-DD'
+        });
+
+        $('.time-input').datetimepicker({
+            format: 'HH:mm'
+        });
+
+        function goMapPage(){
+            window.location.replace("/Uav-Traffic-Management-Website/realtime_map/html/drone-map.html");
+        }
+
+        function goTrajectoryAnalysis(){
+            window.location.replace("/Uav-Traffic-Management-Website/trajectory_analysis/html/trajectory_analysis.html");
+        }
+    </script>
+
+
+</div>
+
+</body>
+</html>
