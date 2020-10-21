@@ -1,5 +1,5 @@
 if(getToken('utm-token') !== "" && getToken('utm-token') !== 'expired'){
-    window.location.href = '/Uav-Traffic-Management-Website/realtime_map/html/drone-map.html';
+    window.location.href = '/realtime_map/html/drone-map.html';
 }
 
 let serverUrl = getServerUrl();
@@ -35,7 +35,7 @@ loginFormElement.addEventListener('submit', function (e) {
                     saveTokenToCookie('utm-token', token);
                     saveTokenToCookie('utm-accountId', accountId);
                     saveTokenToCookie('utm-pilotName', pilotName);
-                    window.location.href = "/Uav-Traffic-Management-Website/realtime_map/html/drone-map.html";
+                    window.location.href = "/realtime_map/html/drone-map.html";
                     break;
 
                 default:

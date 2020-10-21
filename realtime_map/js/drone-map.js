@@ -19,7 +19,7 @@ let map = new mapboxgl.Map({
 
 function isTokenExpire(status) {
     if (status === 403) {
-        window.location.replace("/Uav-Traffic-Management-Website/index.html");
+        window.location.replace("/index.html");
     }
 }
 
@@ -73,7 +73,7 @@ function setExecutingStartPointAndEndPointIcon(data) {
         "properties": {}
     };
 
-    map.loadImage('/Uav-Traffic-Management-Website/realtime_map/img/executing_plan_start_point.png', function (error, image) {
+    map.loadImage('/realtime_map/img/executing_plan_start_point.png', function (error, image) {
         if (error) throw error;
         map.addImage('executingStartPointIcon', image);
         map.addLayer({
@@ -101,7 +101,7 @@ function setExecutingStartPointAndEndPointIcon(data) {
         },
         "properties": {}
     };
-    map.loadImage('/Uav-Traffic-Management-Website/realtime_map/img/executing_plan_end_point.png', function (error, image) {
+    map.loadImage('/realtime_map/img/executing_plan_end_point.png', function (error, image) {
         if (error) throw error;
         map.addImage('executingEndPointIcon', image);
         map.addLayer({
@@ -166,7 +166,7 @@ function setExpireStartPointAndEndPointIcon(data) {
         "properties": {}
     };
 
-    map.loadImage('/Uav-Traffic-Management-Website/realtime_map/img/expire_plan_start_point.png', function (error, image) {
+    map.loadImage('/realtime_map/img/expire_plan_start_point.png', function (error, image) {
         if (error) throw error;
         map.addImage('expireStartPointIcon', image);
         map.addLayer({
@@ -194,7 +194,7 @@ function setExpireStartPointAndEndPointIcon(data) {
         },
         "properties": {}
     };
-    map.loadImage('/Uav-Traffic-Management-Website/realtime_map/img/expire_plan_end_point.png', function (error, image) {
+    map.loadImage('/realtime_map/img/expire_plan_end_point.png', function (error, image) {
         if (error) throw error;
         map.addImage('expireEndPointIcon', image);
         map.addLayer({
@@ -259,7 +259,7 @@ function setPrepareStartPointAndEndPointIcon(data) {
         "properties": {}
     };
 
-    map.loadImage('/Uav-Traffic-Management-Website/realtime_map/img/prepare_plan_start_point.png', function (error, image) {
+    map.loadImage('/realtime_map/img/prepare_plan_start_point.png', function (error, image) {
         if (error) throw error;
         map.addImage('prepareStartPointIcon', image);
         map.addLayer({
@@ -287,7 +287,7 @@ function setPrepareStartPointAndEndPointIcon(data) {
         },
         "properties": {}
     };
-    map.loadImage('/Uav-Traffic-Management-Website/realtime_map/img/prepare_plan_end_point.png', function (error, image) {
+    map.loadImage('/realtime_map/img/prepare_plan_end_point.png', function (error, image) {
         if (error) throw error;
         map.addImage('prepareEndPointIcon', image);
         map.addLayer({
@@ -481,7 +481,7 @@ function setCurrentDroneIcon(data) {
         },
         "properties": {}
     };
-    map.loadImage('/Uav-Traffic-Management-Website/realtime_map/img/uav.png', function (error, image) {
+    map.loadImage('/realtime_map/img/uav.png', function (error, image) {
         if (error) throw error;
         map.addImage('currentDroneLocationIcon', image);
         map.addLayer({
