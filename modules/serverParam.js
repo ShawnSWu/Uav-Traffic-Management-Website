@@ -1,3 +1,3 @@
 function getServerUrl() {
-    return 'http://localhost:8084';
+    return 'http://localhost:8083';
 }

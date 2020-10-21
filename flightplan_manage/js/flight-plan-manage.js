@@ -1,6 +1,5 @@
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2hhd253dXBsdXMiLCJhIjoiY2p3bDd0MmljMDJuNjN5bWM0amE4Zjh1dyJ9.egOLl8lhG8LhBFktHTuIhw';
-let map = new mapboxgl.Map({
-    container: 'select-flight-path-map',
+map = new mapboxgl.Map({
+    container: 'map',
     style: 'mapbox://styles/mapbox/outdoors-v11',
     center: [120.870817, 23.679199],
     zoom: 7
