@@ -1,3 +1,3 @@
 function getServerUrl() {
-    return 'http://localhost:8083';
+    return 'http://mcn.nutn.edu.tw:8083';
 }
